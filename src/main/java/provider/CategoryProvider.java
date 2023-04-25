@@ -4,6 +4,7 @@ import model.Categories;
 import model.CategoryKeywords;
 import model.SubCategories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryProvider {
@@ -13,7 +14,20 @@ public class CategoryProvider {
     private static final String LEVEL_1 = "Level 1";
 
     public List<Categories> getListOfCategories() {
-        return List.of(homeCategory());
+        List<Categories> categoriesList = new ArrayList<>();
+        categoriesList.add(createCategory("1","Home Category"));
+        categoriesList.add(createCategory("2","Electronics Category"));
+        categoriesList.add(createCategory("3","Furniture Category"));
+        return categoriesList;
+    }
+
+    private Categories createCategory(String id, String name) {
+        return Categories.builder()
+                .categoryId(id)
+                .categoryName(name)
+                .categoryLevel(LEVEL_1)
+                .keywordsList(getKeywordsList())
+                .build();
     }
 
     public List<SubCategories> getListOfSubCategories() {
